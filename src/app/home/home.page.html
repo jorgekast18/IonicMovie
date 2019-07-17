@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      My App in Ionic :)
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+  <ion-content fullscreen padding scroll-y="false">
+    <ion-item>
+      <ion-label>Choice a Year</ion-label>
+      <ion-select (ionChange)="changeYear($event)">
+        <ion-select-option [value]="year" *ngFor="let year of years">{{year.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-fab vertical="center" horizontal="start">
+      <ion-fab-button (click)="prevSlide(movie)" color="light">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <ion-slides #slide>
+      <ion-slide *ngFor="let movie of movies">
+        <img [src]="movie.img" />
+        <h3>{{ movie.title }}</h3>
+
+        <h2 class="boder-top">PROVIDE YOU RANK</h2>
+        <ion-row class="center">
+            <ion-fab-button vertical="center" *ngFor="let rating of ratingArray" (click)="setRating(rating.value, movie)"  size="small" color="light">
+              <ion-icon [name]="rating.icon"></ion-icon>
+            </ion-fab-button>
+          </ion-row>
+        
+      </ion-slide>
+    </ion-slides>
+
+    <ion-fab vertical="center" horizontal="end">
+      <ion-fab-button (click)="nextSlide()" color="light">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>
